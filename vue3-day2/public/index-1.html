@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <!-- <script src="/node_modules/@vue/reactivity/dist/reactivity.global.js"></script> -->
+    <script src="/dist/vue.js"></script>
+
+    <script>
+        const { reactive, effect, ref, computed } = VueReactivity;
+
+        // const state = reactive({ name: 'zf', age: 11, address: '回龙观' });
+        let state = reactive([1,2,3]);
+        // effect 中使用了length 改length 是可以的 但是如果没有用length修改length就不会触发了
+        effect(() => {
+            app.innerHTML = state
+        });
+        // 当effect函数中依赖的数据发生变化 effect会重新执行
+        setTimeout(() => {
+            state['10'] = 1
+        }, 1000);
+        // computed 只有取值时才会执行  computed ref
+   
+    </script>
+</body>
+
+</html>

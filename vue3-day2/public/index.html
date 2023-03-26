@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <!-- <script src="/node_modules/vue/dist/vue.global.js"></script> -->
+    <script src="/dist/vue.js"></script>
+    <script>
+        let { createApp, reactive, h } = Vue;
+        let App = {
+           
+            setup() {
+                let state = reactive({ name: 'zf', age: 11 }); // proxy
+
+                setTimeout(() => {
+                    state.name = 'jw'
+                }, 1000);
+                return ()=> { // render
+                    // react => createElement()
+                    return h('div',{style:{color:'red'}},state.name+":" + state.age)
+                }
+            }
+        }
+        // 组件时怎么样渲染的，初始化的流程
+        // vue3 runtime-dom 针对浏览器平台 runtime-core 核心了
+        createApp(App).mount('#app');
+    </script>
+</body>
+
+</html>
