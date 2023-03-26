@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script src="/dist/vue.js"></script>
+    <script>
+        let { createApp, reactive, h } = Vue;
+        // todo...
+
+        let App = {
+            setup() {
+                let state = reactive({ flag: true });
+                setTimeout(() => {
+                    state.flag = !state.flag
+                }, 2000);
+
+                return () => {
+                    return state.flag ?
+                        h('div', { style: { color: 'red' } }, [
+                            h('li', { key: 'A', style: { background: 'white' } }, 'A'),
+                            h('li', { key: 'B', style: { background: 'white' } }, 'B'),
+
+                            h('li', { key: 'C', style: { background: 'white' } }, 'C'),
+                            h('li', { key: 'D', style: { background: 'white' } }, 'D'),
+                            h('li', { key: 'E', style: { background: 'white' } }, 'E'),
+                            h('li', { key: 'Q', style: { background: 'white' } }, 'Q'),
+
+                            h('li', { key: 'F', style: { background: 'white' } }, 'F'),
+                            h('li', { key: 'G', style: { background: 'white' } }, 'G'),
+                        ]) :
+                        h('div', { style: { color: 'purple' } }, [
+
+                            h('li', { key: 'A', style: { background: 'white' } }, 'A'),
+                            h('li', { key: 'B', style: { background: 'white' } }, 'B'),
+
+                            h('li', { key: 'D', style: { background: 'white' } }, 'D'),
+                            h('li', { key: 'E', style: { background: 'white' } }, 'E'),
+                            h('li', { key: 'C', style: { background: 'white' } }, 'C'),
+
+                            h('li', { key: 'H', style: { background: 'white' } }, 'H'),
+
+                            h('li', { key: 'F', style: { background: 'white' } }, 'F'),
+                            h('li', { key: 'G', style: { background: 'white' } }, 'G'),
+                        ])
+                }
+            }
+        }
+        createApp(App).mount('#app');
+    </script>
+</body>
+
+</html>
